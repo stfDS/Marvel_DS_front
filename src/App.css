@@ -1,0 +1,48 @@
+@import "./assets/header.css";
+@import "./assets/home.css";
+@import "./assets/comics.css";
+@import "./assets/character-comics.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
+body {
+  font-family: "Black Ops One", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: red;
+}
+a:hover {
+  color: gold;
+}
+h3 {
+  font-size: 22px;
+}
+
+body {
+  background-color: #35363a;
+}
+.serch {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.serch input {
+  padding-left: 10px;
+  height: 25px;
+  width: 500px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.container {
+  max-width: 1350px;
+  height: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.main-container {
+  width: 1400px;
+  padding: 0 5px;
+  margin: 0 auto;
+}

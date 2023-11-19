@@ -1,0 +1,24 @@
+header {
+  height: 80px;
+  margin-bottom: 10px;
+  padding-top: 15px;
+}
+header a:hover {
+  color: white;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-top {
+  height: 100%;
+}
+.logo-top img {
+  height: 100%;
+}
+.top-nav {
+  display: flex;
+  gap: 10px;
+  margin-right: 10px;
+}

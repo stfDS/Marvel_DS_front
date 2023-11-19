@@ -1,0 +1,35 @@
+.all-comics {
+  display: flex;
+  flex-wrap: wrap;
+}
+.all-comics h3 {
+  color: crimson;
+}
+.all-comics-sheet {
+  margin-top: 15px;
+  height: 340px;
+  width: calc(100% / 4);
+}
+.all-comics-name {
+  height: 15%;
+}
+.all-comics-pic {
+  display: flex;
+  gap: 10px;
+  height: 85%;
+}
+.all-comics-pic img {
+  object-fit: cover;
+}
+.all-comics-description {
+  color: blanchedalmond;
+  height: 70%;
+  padding: 5px;
+  overflow: hidden scroll;
+}
+.all-comics-description:hover {
+  overflow: scroll;
+}
+.all-comics-description::-webkit-scrollbar {
+  display: none;
+}

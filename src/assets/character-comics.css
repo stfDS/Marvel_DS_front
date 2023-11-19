@@ -1,0 +1,50 @@
+.solo-character {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.solo-character-title h1 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.solo-character-pic {
+  width: 25%;
+  margin-bottom: 20px;
+}
+.solo-character-pic img {
+  width: 100%;
+  border: solid red;
+  border-radius: 5px 30px;
+}
+.character-com-character-description {
+  width: 400px;
+  line-height: 25px;
+  color: grey;
+  margin-bottom: 30px;
+}
+.solo-character-comics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.solo-comic-sheet {
+  width: calc((100% - 100px) / 5);
+}
+.solo-character-comic-title {
+  text-align: center;
+  height: 35px;
+}
+.solo-character-comic-title h2 {
+  color: blanchedalmond;
+  font-size: 15px;
+}
+.solo-character-comic-pic {
+  width: 100%;
+}
+.solo-character-comic-pic img {
+  object-fit: cover;
+  width: 100%;
+}
