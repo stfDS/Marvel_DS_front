@@ -7,31 +7,67 @@ const Home = () => {
   const [homeData, setHomeData] = useState(null);
   const [name, setName] = useState("");
   const [skip, setSkip] = useState(0);
+  const [count, setCount] = useState(0);
 
   const addEllipsis = (text, maxLength) => {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const handleClickMinus = () => {
     if (skip > 0) {
       setSkip(skip - 100);
+      setCount(count + 100);
+      scrollToTop();
     }
   };
   const handleClickPlus = () => {
-    setSkip(skip + 100);
+    if (skip < count - 100) {
+      setSkip(skip + 100);
+      setCount(count - 100);
+      scrollToTop();
+    }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `https:site--marvel-ds--5gjnlvwzlmps.code.run/characters/${skip}/${name}`
-      );
-      console.log(response);
-      setHomeData(response.data);
-      console.log(homeData);
-      setLoading(false);
+      if (skip === 0 && name === "") {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters`
+        );
+
+        setHomeData(response.data);
+        setCount(response.data.count);
+
+        setLoading(false);
+      } else if (skip > 0 && name === "") {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/${skip}`
+        );
+
+        setHomeData(response.data);
+        setCount(response.data.count);
+      } else if (name !== "" && skip === 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/${name}`
+        );
+
+        setHomeData(response.data);
+        setCount(response.data.count);
+      } else if (name !== "" && skip !== 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/skip/${name}/${skip}`
+        );
+
+        setHomeData(response.data);
+      }
     };
     fetchData();
-  }, [name, skip]);
+  }, [skip, name]);
 
   return loading === true ? (
     <h1>Loading</h1>
@@ -40,8 +76,8 @@ const Home = () => {
       <section className="serch">
         <input
           onChange={(event) => {
-            setName(event.target.value);
             setSkip(0);
+            setName(event.target.value);
           }}
           type="search"
           id="serch-character"
@@ -91,4 +127,4 @@ const Home = () => {
 };
 
 export default Home;
-//
+//https://site--marvel-ds--5gjnlvwzlmps.code.run

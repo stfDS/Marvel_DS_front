@@ -13,21 +13,16 @@ const CharacterComics = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https:site--marvel-ds--5gjnlvwzlmps.code.run/character/${characterId}`
+        `https://site--marvel-ds--5gjnlvwzlmps.code.run/character/${characterId}`
       );
-      console.log(response);
-      // console.log(response.data.comics);
-
       setCharacterData(response.data);
-      // console.log(characterData);
+
       for (let i = 0; i < response.data.comics.length; i++) {
         if (response.data.comics[i] !== null) {
           const responseComics = await axios.get(
-            `https:site--marvel-ds--5gjnlvwzlmps.code.run/comic/${response.data.comics[i]}`
+            `https://site--marvel-ds--5gjnlvwzlmps.code.run/comic/${response.data.comics[i]}`
           );
           comicsSheet.push(responseComics.data);
-
-          console.log(comicsSheet);
         }
       }
 

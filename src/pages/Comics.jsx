@@ -6,28 +6,62 @@ const Comics = () => {
   const [comicsData, setComicsData] = useState(null);
   const [title, setTitle] = useState("");
   const [skip, setSkip] = useState(0);
+  const [count, setCount] = useState(0);
 
-  const addEllipsis = (text, maxLength) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  // const addEllipsis = (text, maxLength) => {
+  //   return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  // };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
-
   const handleClickMinus = () => {
     if (skip > 0) {
       setSkip(skip - 100);
+      setCount(count + 100);
+      scrollToTop();
     }
   };
   const handleClickPlus = () => {
-    setSkip(skip + 100);
+    if (skip < count - 100) {
+      setSkip(skip + 100);
+      setCount(count - 100);
+      scrollToTop();
+    }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `https:site--marvel-ds--5gjnlvwzlmps.code.run/comics/${skip}/${title}`
-      );
-      console.log(response.data);
-      setComicsData(response.data);
-      setLoading(false);
+      if (skip === 0 && title === "") {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics`
+        );
+        setComicsData(response.data);
+        setCount(response.data.count);
+        setLoading(false);
+      } else if (skip > 0 && title === "") {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/skip/${skip}`
+        );
+        setComicsData(response.data);
+        setCount(response.data.count);
+      } else if (title !== "" && skip === 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/title/${title}`
+        );
+
+        setComicsData(response.data);
+        setCount(response.data.count);
+      } else if (title !== "" && skip !== 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/title/skip/${title}/${skip}`
+        );
+        setComicsData(response.data);
+        setCount(response.data.count);
+      }
     };
     fetchData();
   }, [title, skip]);
@@ -39,8 +73,8 @@ const Comics = () => {
       <section className="serch">
         <input
           onChange={(event) => {
-            setTitle(event.target.value);
             setSkip(0);
+            setTitle(event.target.value);
           }}
           type="search"
           id="serch-character"
