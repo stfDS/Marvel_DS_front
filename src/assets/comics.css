@@ -19,11 +19,12 @@
   height: 85%;
 }
 .all-comics-pic img {
+  max-width: 190px;
   object-fit: cover;
 }
 .all-comics-description {
-  color: blanchedalmond;
-  height: 70%;
+  color: aliceblue;
+  height: 80%;
   padding: 5px;
   overflow: hidden scroll;
 }

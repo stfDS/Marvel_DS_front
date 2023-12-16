@@ -12,25 +12,27 @@ const CharacterComics = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
+      const characterResponse = await axios.get(
         `https://site--marvel-ds--5gjnlvwzlmps.code.run/character/${characterId}`
       );
-      setCharacterData(response.data);
+      setCharacterData(characterResponse.data);
 
-      for (let i = 0; i < response.data.comics.length; i++) {
-        if (response.data.comics[i] !== null) {
-          const responseComics = await axios.get(
-            `https://site--marvel-ds--5gjnlvwzlmps.code.run/comic/${response.data.comics[i]}`
-          );
-          comicsSheet.push(responseComics.data);
-        }
+      if (characterResponse.data.comics) {
+        const comicsPromises = characterResponse.data.comics.map((comicId) =>
+          axios.get(
+            `https://site--marvel-ds--5gjnlvwzlmps.code.run/comic/${comicId}`
+          )
+        );
+
+        const comicsResponses = await Promise.all(comicsPromises);
+        setComicsSheet(comicsResponses.map((response) => response.data));
       }
 
       setLoading(false);
     };
 
     fetchData();
-  }, []);
+  }, [characterId]);
 
   return loading ? (
     <h1>Loading</h1>
@@ -41,14 +43,22 @@ const CharacterComics = () => {
           <h1> {characterData.name} </h1>
         </div>
         <div className="solo-character-pic">
-          <img
-            src={
-              characterData.thumbnail.path +
-              "." +
-              characterData.thumbnail.extension
-            }
-            alt={characterData.name}
-          />
+          {characterData.thumbnail.path ===
+          "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+            <img
+              src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+              alt={characterData.name}
+            />
+          ) : (
+            <img
+              src={
+                characterData.thumbnail.path +
+                "." +
+                characterData.thumbnail.extension
+              }
+              alt={characterData.name}
+            />
+          )}
         </div>
         {characterData.description && (
           <div className="character-com-character-description">
@@ -64,10 +74,18 @@ const CharacterComics = () => {
                 <h2> {comic.title} </h2>
               </div>
               <div className="solo-character-comic-pic">
-                <img
-                  src={comic.thumbnail.path + "." + comic.thumbnail.extension}
-                  alt={comic.name}
-                />
+                {comic.thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+                  <img
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+                    alt={comic.name}
+                  />
+                ) : (
+                  <img
+                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    alt={comic.name}
+                  />
+                )}
               </div>
               {/* <div className="solo-character-comic-description">
                 <p>{comic.description}</p>

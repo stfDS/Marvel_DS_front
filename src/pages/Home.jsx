@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import AddEllipsis from "../../functions/addEllipsis";
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [homeData, setHomeData] = useState(null);
@@ -9,9 +9,6 @@ const Home = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
 
-  const addEllipsis = (text, maxLength) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  };
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -94,18 +91,26 @@ const Home = () => {
               className="home-character-sheet"
             >
               <div className="home-character-name">
-                <h3>{addEllipsis(character.name, 10)}</h3>
+                <h3>{AddEllipsis(character.name, 10)}</h3>
               </div>
 
               <div className="home-character-pic">
-                <img
-                  src={
-                    character.thumbnail.path +
-                    "." +
-                    character.thumbnail.extension
-                  }
-                  alt={character.name}
-                />
+                {character.thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+                  <img
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+                    alt={character.name}
+                  />
+                ) : (
+                  <img
+                    src={
+                      character.thumbnail.path +
+                      "." +
+                      character.thumbnail.extension
+                    }
+                    alt={character.name}
+                  />
+                )}
               </div>
               {/* {character.description && (
                 <div className="home-character-description">
@@ -127,4 +132,3 @@ const Home = () => {
 };
 
 export default Home;
-//https://site--marvel-ds--5gjnlvwzlmps.code.run

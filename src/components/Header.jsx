@@ -14,15 +14,14 @@ const Header = () => {
         </div>
         <div className="top-nav">
           <div>
-            <Link to="/">Personnages</Link>
+            <Link to="/">Characters</Link>
           </div>
           <div>
             <Link to="/comics">Comics</Link>
           </div>
-          <div>
+          {/* <div>
             <Link to="/favorites">Favoris</Link>
-          </div>
-          <div></div>
+          </div> */}
         </div>
       </div>
     </header>

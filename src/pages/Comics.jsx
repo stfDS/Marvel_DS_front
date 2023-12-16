@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import AddEllipsis from "../../functions/addEllipsis";
 
 const Comics = () => {
   const [loading, setLoading] = useState(true);
@@ -85,14 +86,25 @@ const Comics = () => {
           return (
             <div key={comics._id} className="all-comics-sheet">
               <div className="all-comics-name">
-                <h3>{comics.title} </h3>
+                <h3>{AddEllipsis(comics.title, 15)} </h3>
               </div>
 
               <div className="all-comics-pic">
-                <img
-                  src={comics.thumbnail.path + "." + comics.thumbnail.extension}
-                  alt={comics.name}
-                />
+                {comics.thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+                  <img
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+                    alt={comics.name}
+                  />
+                ) : (
+                  <img
+                    src={
+                      comics.thumbnail.path + "." + comics.thumbnail.extension
+                    }
+                    alt={comics.name}
+                  />
+                )}
+
                 {comics.description && (
                   <div className="all-comics-description">
                     <p>{comics.description}</p>
