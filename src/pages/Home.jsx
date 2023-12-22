@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddEllipsis from "../../functions/AddEllipsis";
-import ScrollToTop from "../../functions/ScrollToTop";
+
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [homeData, setHomeData] = useState(null);
@@ -10,35 +9,58 @@ const Home = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
 
+  const addEllipsis = (text, maxLength) => {
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const handleClickMinus = () => {
     if (skip > 0) {
       setSkip(skip - 100);
       setCount(count + 100);
-      ScrollToTop();
+      scrollToTop();
     }
   };
   const handleClickPlus = () => {
     if (skip < count - 100) {
       setSkip(skip + 100);
       setCount(count - 100);
-      ScrollToTop();
+      scrollToTop();
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      if (name === "") {
+      if (skip === 0 && name === "") {
         const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/${skip}`
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters`
         );
 
         setHomeData(response.data);
         setCount(response.data.count);
 
         setLoading(false);
-      } else if (name) {
+      } else if (skip > 0 && name === "") {
         const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/name/${skip}/${name}`
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/${skip}`
+        );
+
+        setHomeData(response.data);
+        setCount(response.data.count);
+      } else if (name !== "" && skip === 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/${name}`
+        );
+
+        setHomeData(response.data);
+        setCount(response.data.count);
+      } else if (name !== "" && skip !== 0) {
+        const response = await axios.get(
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/skip/${name}/${skip}`
         );
 
         setHomeData(response.data);
@@ -63,6 +85,7 @@ const Home = () => {
       </section>
       <section className="character-home">
         {homeData.results.map((character) => {
+          // console.log(character._id);
           return (
             <Link
               //
@@ -71,26 +94,18 @@ const Home = () => {
               className="home-character-sheet"
             >
               <div className="home-character-name">
-                <h3>{AddEllipsis(character.name, 10)}</h3>
+                <h3>{addEllipsis(character.name, 10)}</h3>
               </div>
 
               <div className="home-character-pic">
-                {character.thumbnail.path ===
-                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
-                  <img
-                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
-                    alt={character.name}
-                  />
-                ) : (
-                  <img
-                    src={
-                      character.thumbnail.path +
-                      "." +
-                      character.thumbnail.extension
-                    }
-                    alt={character.name}
-                  />
-                )}
+                <img
+                  src={
+                    character.thumbnail.path +
+                    "." +
+                    character.thumbnail.extension
+                  }
+                  alt={character.name}
+                />
               </div>
               {/* {character.description && (
                 <div className="home-character-description">
@@ -103,10 +118,8 @@ const Home = () => {
       </section>
       <section className="page-skip">
         <div className="bottom-btn">
-          <button onClick={handleClickPlus}>Previous</button>
-        </div>
-        <div className="bottom-btn">
-          <button onClick={handleClickMinus}>Next</button>
+          <button onClick={handleClickMinus}>Page précédente</button>
+          <button onClick={handleClickPlus}>Page suivante</button>
         </div>
       </section>
     </main>
@@ -114,3 +127,4 @@ const Home = () => {
 };
 
 export default Home;
+//https://site--marvel-ds--5gjnlvwzlmps.code.run
