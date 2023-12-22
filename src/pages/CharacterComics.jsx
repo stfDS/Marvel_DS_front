@@ -13,14 +13,18 @@ const CharacterComics = () => {
   useEffect(() => {
     const fetchData = async () => {
       const characterResponse = await axios.get(
-        `https://site--marvel-ds--5gjnlvwzlmps.code.run/character/${characterId}`
+        `https://site--marvel-ds--5gjnlvwzlmps.code.run/character/${characterId}`,
+        { withCredentials: true }
       );
       setCharacterData(characterResponse.data);
 
       if (characterResponse.data.comics) {
         const comicsPromises = characterResponse.data.comics.map((comicId) =>
           axios.get(
-            `https://site--marvel-ds--5gjnlvwzlmps.code.run/comic/${comicId}`
+            `https://site--marvel-ds--5gjnlvwzlmps.code.run/comic/${comicId}`,
+            {
+              withCredentials: true,
+            }
           )
         );
 

@@ -46,3 +46,26 @@ body {
   padding: 0 5px;
   margin: 0 auto;
 }
+.page-skip {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+}
+.bottom-btn button {
+  width: 5rem;
+  padding: 0.5rem;
+  color: gold;
+  background-color: red;
+  border-color: gold;
+  border-radius: 1rem;
+}
+
+.description-btn-modal {
+  width: 8rem;
+  /* padding: 0.5rem; */
+  color: gold;
+  background-color: red;
+  border-color: gold;
+  border-radius: 1rem;
+}

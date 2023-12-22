@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import ModalLogin from "./ModalLogin";
+import Logout from "./Logout";
+
+import ModalSigup from "./ModalSignup";
+
+import { useContext } from "react";
+import { AuthContext } from "../context/connect.provider";
 
 const Header = () => {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <header>
       <div className="container top">
@@ -19,9 +28,19 @@ const Header = () => {
           <div>
             <Link to="/comics">Comics</Link>
           </div>
-          {/* <div>
+          <div>
             <Link to="/favorites">Favoris</Link>
-          </div> */}
+          </div>
+          <div>
+            {isAuthenticated === false ? (
+              <div>
+                <ModalSigup />
+                <ModalLogin />
+              </div>
+            ) : (
+              <Logout />
+            )}
+          </div>
         </div>
       </div>
     </header>

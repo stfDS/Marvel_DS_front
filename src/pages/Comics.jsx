@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AddEllipsis from "../../functions/addEllipsis";
+import AddEllipsis from "../../functions/AddEllipsis";
+import ScrollToTop from "../../functions/ScrollToTop";
+import ModalDescription from "../components/ModalDescription";
 
 const Comics = () => {
   const [loading, setLoading] = useState(true);
@@ -9,54 +11,31 @@ const Comics = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
 
-  // const addEllipsis = (text, maxLength) => {
-  //   return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  // };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   const handleClickMinus = () => {
     if (skip > 0) {
       setSkip(skip - 100);
       setCount(count + 100);
-      scrollToTop();
+      ScrollToTop();
     }
   };
   const handleClickPlus = () => {
     if (skip < count - 100) {
       setSkip(skip + 100);
       setCount(count - 100);
-      scrollToTop();
+      ScrollToTop();
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      if (skip === 0 && title === "") {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics`
-        );
-        setComicsData(response.data);
-        setCount(response.data.count);
-        setLoading(false);
-      } else if (skip > 0 && title === "") {
+      if (title === "") {
         const response = await axios.get(
           `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/skip/${skip}`
         );
         setComicsData(response.data);
         setCount(response.data.count);
-      } else if (title !== "" && skip === 0) {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/title/${title}`
-        );
-
-        setComicsData(response.data);
-        setCount(response.data.count);
-      } else if (title !== "" && skip !== 0) {
+        setLoading(false);
+      } else if (title) {
         const response = await axios.get(
           `https://site--marvel-ds--5gjnlvwzlmps.code.run/comics/title/skip/${title}/${skip}`
         );
@@ -106,9 +85,10 @@ const Comics = () => {
                 )}
 
                 {comics.description && (
-                  <div className="all-comics-description">
-                    <p>{comics.description}</p>
-                  </div>
+                  <ModalDescription
+                    title={comics.title}
+                    description={comics.description}
+                  />
                 )}
               </div>
             </div>
@@ -117,8 +97,10 @@ const Comics = () => {
       </section>
       <section className="page-skip">
         <div className="bottom-btn">
-          <button onClick={handleClickMinus}>Page précédente</button>
-          <button onClick={handleClickPlus}>Page suivante</button>
+          <button onClick={handleClickPlus}>Previous</button>
+        </div>
+        <div className="bottom-btn">
+          <button onClick={handleClickMinus}>Next</button>
         </div>
       </section>
     </main>

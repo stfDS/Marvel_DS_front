@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddEllipsis from "../../functions/addEllipsis";
+import AddEllipsis from "../../functions/AddEllipsis";
+import ScrollToTop from "../../functions/ScrollToTop";
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [homeData, setHomeData] = useState(null);
@@ -9,55 +10,35 @@ const Home = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   const handleClickMinus = () => {
     if (skip > 0) {
       setSkip(skip - 100);
       setCount(count + 100);
-      scrollToTop();
+      ScrollToTop();
     }
   };
   const handleClickPlus = () => {
     if (skip < count - 100) {
       setSkip(skip + 100);
       setCount(count - 100);
-      scrollToTop();
+      ScrollToTop();
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      if (skip === 0 && name === "") {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters`
-        );
-
-        setHomeData(response.data);
-        setCount(response.data.count);
-
-        setLoading(false);
-      } else if (skip > 0 && name === "") {
+      if (name === "") {
         const response = await axios.get(
           `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/${skip}`
         );
 
         setHomeData(response.data);
         setCount(response.data.count);
-      } else if (name !== "" && skip === 0) {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/${name}`
-        );
 
-        setHomeData(response.data);
-        setCount(response.data.count);
-      } else if (name !== "" && skip !== 0) {
+        setLoading(false);
+      } else if (name) {
         const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/skip/${name}/${skip}`
+          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/name/${skip}/${name}`
         );
 
         setHomeData(response.data);
@@ -82,7 +63,6 @@ const Home = () => {
       </section>
       <section className="character-home">
         {homeData.results.map((character) => {
-          // console.log(character._id);
           return (
             <Link
               //
@@ -123,8 +103,10 @@ const Home = () => {
       </section>
       <section className="page-skip">
         <div className="bottom-btn">
-          <button onClick={handleClickMinus}>Page précédente</button>
-          <button onClick={handleClickPlus}>Page suivante</button>
+          <button onClick={handleClickPlus}>Previous</button>
+        </div>
+        <div className="bottom-btn">
+          <button onClick={handleClickMinus}>Next</button>
         </div>
       </section>
     </main>

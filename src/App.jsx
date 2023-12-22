@@ -5,19 +5,22 @@ import Home from "./pages/Home";
 import CharacterComics from "./pages/CharacterComics";
 import Comics from "./pages/Comics";
 import Favorites from "./pages/Favorites";
+import { AuthProvider } from "./context/connect.provider";
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/character/:id" element={<CharacterComics />} />
-        <Route path="/comics" element={<Comics />} />
+          <Route path="/character/:id" element={<CharacterComics />} />
+          <Route path="/comics" element={<Comics />} />
 
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }

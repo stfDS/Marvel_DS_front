@@ -6,31 +6,39 @@
   color: crimson;
 }
 .all-comics-sheet {
-  margin-top: 15px;
-  height: 340px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+
+  height: fit-content;
   width: calc(100% / 4);
 }
 .all-comics-name {
-  height: 15%;
+  height: 2rem;
 }
 .all-comics-pic {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  height: 85%;
+  width: fit-content;
+  height: fit-content;
 }
 .all-comics-pic img {
-  max-width: 190px;
+  /* max-width: 190px; */
+  height: 20rem;
+  aspect-ratio: 21 / 32;
   object-fit: cover;
 }
 .all-comics-description {
-  color: aliceblue;
-  height: 80%;
-  padding: 5px;
-  overflow: hidden scroll;
+  padding-bottom: 1.5rem;
 }
-.all-comics-description:hover {
-  overflow: scroll;
+.description-title {
+  color: crimson;
 }
-.all-comics-description::-webkit-scrollbar {
-  display: none;
+.description-modal-text {
+  padding: 0.5rem;
+  line-height: 1.5rem;
+  color: floralwhite;
 }
