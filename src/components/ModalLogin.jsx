@@ -90,7 +90,7 @@ const ModalLogin = () => {
             />
           </form>
         </div>
-        <input type="submit" onSubmit={handleSubmit} />
+        <input type="submit" onClick={handleSubmit} />
         <button className="btn-modal" onClick={closeModal}>
           close
         </button>
