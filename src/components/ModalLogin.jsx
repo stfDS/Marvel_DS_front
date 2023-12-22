@@ -38,14 +38,10 @@ const ModalLogin = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/login`,
-        {
-          withCredentials: true,
-        },
-        {
-          email: email,
-          password: password,
-        }
+        { email, password },
+        { withCredentials: true }
       );
+
       setIsAuthenticated(true);
       setUser(response.data);
       console.log(response.data);
@@ -75,7 +71,7 @@ const ModalLogin = () => {
         <div>
           <form>
             <input
-              type=" email"
+              type="email"
               id="email"
               placeholder="Email"
               onChange={(event) => {
@@ -94,7 +90,7 @@ const ModalLogin = () => {
             />
           </form>
         </div>
-        <input type="submit" onClick={handleSubmit} />
+        <input type="submit" onSubmit={handleSubmit} />
         <button className="btn-modal" onClick={closeModal}>
           close
         </button>
