@@ -36,7 +36,7 @@ const ModalSigup = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "process.env.SERV_URL/signup",
+        `${import.meta.env.REACT_APP_SERV_URL}/signup`,
         {
           username: username,
           email: email,

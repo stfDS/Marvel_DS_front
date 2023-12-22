@@ -16,7 +16,7 @@ const Comics = () => {
     const fetchData = async () => {
       if (title === "") {
         const response = await axios.get(
-          `process.env.SERV_URL/comics/skip/${skip}`
+          `${import.meta.env.REACT_APP_SERV_URL}/comics/skip/${skip}`
         );
         setComicsData(response.data);
         setCount(response.data.count);
@@ -26,7 +26,9 @@ const Comics = () => {
         setLoading(true);
 
         const response = await axios.get(
-          `process.env.SERV_URL/comics/title/skip/${title}/${skip}`
+          `${
+            import.meta.env.REACT_APP_SERV_URL
+          }/comics/title/skip/${title}/${skip}`
         );
         setComicsData(response.data);
         setCount(response.data.count);

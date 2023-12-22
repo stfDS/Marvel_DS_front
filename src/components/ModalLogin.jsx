@@ -36,10 +36,13 @@ const ModalLogin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("process.env.SERV_URL/login", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.REACT_APP_SERV_URL}/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
       setIsAuthenticated(true);
       setUser(response.data);
       console.log(response.data);

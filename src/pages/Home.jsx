@@ -16,7 +16,7 @@ const Home = () => {
     const fetchData = async () => {
       if (name === "") {
         const response = await axios.get(
-          `process.env.SERV_URL/characters/skip/${skip}`
+          `${import.meta.env.REACT_APP_SERV_URL}/characters/skip/${skip}`
         );
 
         setHomeData(response.data);
@@ -25,7 +25,9 @@ const Home = () => {
         setLoading(false);
       } else if (name !== "") {
         const response = await axios.get(
-          `process.env.SERV_URL/characters/skip/name/${skip}/${name}`
+          `${
+            import.meta.env.REACT_APP_SERV_URL
+          }/characters/skip/name/${skip}/${name}`
         );
 
         setHomeData(response.data);
