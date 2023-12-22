@@ -63,7 +63,11 @@ const Comics = () => {
 
               <div className="all-comics-pic">
                 <img
-                  src={comics.thumbnail.path + "." + comics.thumbnail.extension}
+                  src={
+                    comics.thumbnail.path.replace("http", "https") +
+                    "." +
+                    comics.thumbnail.extension
+                  }
                   alt={comics.name}
                 />
                 {comics.description && (

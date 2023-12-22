@@ -31,7 +31,7 @@ const ModalDescription = ({ title, description }) => {
   }
   return (
     <div className="all-comics-description">
-      <button className="description-btn-modal" onClick={openModal}>
+      <button className="btn-modal" onClick={openModal}>
         Description
       </button>
       <Modal
@@ -51,7 +51,7 @@ const ModalDescription = ({ title, description }) => {
           <p>{description}</p>
         </div>
 
-        <button className="description-btn-modal" onClick={closeModal}>
+        <button className="btn-modal" onClick={closeModal}>
           close
         </button>
       </Modal>

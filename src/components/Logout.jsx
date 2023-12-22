@@ -16,7 +16,11 @@ const Logout = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button className="btn-modal" onClick={handleLogout}>
+      Logout
+    </button>
+  );
 };
 
 export default Logout;

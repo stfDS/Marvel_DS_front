@@ -50,7 +50,7 @@ const CharacterComics = () => {
           ) : (
             <img
               src={
-                characterData.thumbnail.path +
+                characterData.thumbnail.path.replace("http", "https") +
                 "." +
                 characterData.thumbnail.extension
               }
@@ -80,7 +80,11 @@ const CharacterComics = () => {
                   />
                 ) : (
                   <img
-                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    src={
+                      comic.thumbnail.path.replace("http", "https") +
+                      "." +
+                      comic.thumbnail.extension
+                    }
                     alt={comic.name}
                   />
                 )}

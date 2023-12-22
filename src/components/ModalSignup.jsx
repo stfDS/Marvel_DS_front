@@ -56,8 +56,8 @@ const ModalSigup = () => {
   };
 
   return (
-    <div className="all-comics-description">
-      <button className="description-btn-modal" onClick={openModal}>
+    <div>
+      <button className="btn-modal" onClick={openModal}>
         Signup
       </button>
       <Modal
@@ -72,7 +72,7 @@ const ModalSigup = () => {
           sign
         </h3>
 
-        <div className="description-modal-text">
+        <div>
           <form>
             <input
               id="user"
@@ -104,7 +104,7 @@ const ModalSigup = () => {
           </form>
         </div>
         <input type="submit" onClick={handleSignup} />
-        <button className="description-btn-modal" onClick={closeModal}>
+        <button className="btn-modal" onClick={closeModal}>
           close
         </button>
       </Modal>

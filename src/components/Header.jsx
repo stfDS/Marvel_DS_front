@@ -27,9 +27,7 @@ const Header = () => {
           <div>
             <Link to="/favorites">Favoris</Link>
           </div>
-          <div>
-            <ModalLogin />
-          </div>
+          <ModalLogin />
           <ModalSigup />
           <Logout />
         </div>
