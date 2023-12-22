@@ -38,12 +38,14 @@ const ModalLogin = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/login`,
-        { email, password },
-        { withCredentials: true }
+        {
+          email: email,
+          password: password,
+        }
       );
-
       setIsAuthenticated(true);
       setUser(response.data);
+      console.log(response.cookie);
       console.log(response.data);
       closeModal();
     } catch (error) {
