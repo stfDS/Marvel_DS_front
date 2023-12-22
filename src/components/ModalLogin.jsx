@@ -39,6 +39,9 @@ const ModalLogin = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/login`,
         {
+          withCredentials: true,
+        },
+        {
           email: email,
           password: password,
         }
