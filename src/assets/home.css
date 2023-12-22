@@ -4,17 +4,17 @@
 }
 .home-main h3 {
   text-align: center;
+  font-size: 22px;
 }
 .character-home {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
   height: 100%;
 }
 .home-character-sheet {
   border-radius: 20px;
-  width: calc((100% - 25px) / 6);
+  width: calc((100% - 25px) / 5);
   height: 400px;
 }
 .home-character-name {

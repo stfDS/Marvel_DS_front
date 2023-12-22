@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import ModalLogin from "./ModalLogin";
+import ModalSigup from "./ModalSignup";
+import Logout from "./Logout";
+import ReactModal from "react-modal";
+ReactModal.setAppElement("#root");
 
 const Header = () => {
   return (
@@ -22,7 +27,11 @@ const Header = () => {
           <div>
             <Link to="/favorites">Favoris</Link>
           </div>
-          <div></div>
+          <div>
+            <ModalLogin />
+          </div>
+          <ModalSigup />
+          <Logout />
         </div>
       </div>
     </header>

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AddEllipsis from "../../functions/addEllipsis";
+import HadleClickPages from "../../functions/HadleClickPages";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -8,62 +10,28 @@ const Home = () => {
   const [name, setName] = useState("");
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
-
-  const addEllipsis = (text, maxLength) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-  };
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-  const handleClickMinus = () => {
-    if (skip > 0) {
-      setSkip(skip - 100);
-      setCount(count + 100);
-      scrollToTop();
-    }
-  };
-  const handleClickPlus = () => {
-    if (skip < count - 100) {
-      setSkip(skip + 100);
-      setCount(count - 100);
-      scrollToTop();
-    }
-  };
+  const [countStart, setCountStart] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (skip === 0 && name === "") {
+      if (name === "") {
         const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters`
+          `process.env.SERV_URL/characters/skip/${skip}`
         );
 
         setHomeData(response.data);
         setCount(response.data.count);
-
+        setCountStart(response.data.count);
         setLoading(false);
-      } else if (skip > 0 && name === "") {
+      } else if (name !== "") {
         const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/skip/${skip}`
+          `process.env.SERV_URL/characters/skip/name/${skip}/${name}`
         );
 
         setHomeData(response.data);
         setCount(response.data.count);
-      } else if (name !== "" && skip === 0) {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/${name}`
-        );
-
-        setHomeData(response.data);
-        setCount(response.data.count);
-      } else if (name !== "" && skip !== 0) {
-        const response = await axios.get(
-          `https://site--marvel-ds--5gjnlvwzlmps.code.run/characters/name/skip/${name}/${skip}`
-        );
-
-        setHomeData(response.data);
+        setCountStart(response.data.count);
+        setLoading(false);
       }
     };
     fetchData();
@@ -85,7 +53,6 @@ const Home = () => {
       </section>
       <section className="character-home">
         {homeData.results.map((character) => {
-          // console.log(character._id);
           return (
             <Link
               //
@@ -94,7 +61,7 @@ const Home = () => {
               className="home-character-sheet"
             >
               <div className="home-character-name">
-                <h3>{addEllipsis(character.name, 10)}</h3>
+                <h3>{AddEllipsis(character.name, 10)}</h3>
               </div>
 
               <div className="home-character-pic">
@@ -117,14 +84,16 @@ const Home = () => {
         })}
       </section>
       <section className="page-skip">
-        <div className="bottom-btn">
-          <button onClick={handleClickMinus}>Page précédente</button>
-          <button onClick={handleClickPlus}>Page suivante</button>
-        </div>
+        <HadleClickPages
+          skip={skip}
+          count={count}
+          setCount={setCount}
+          setSkip={setSkip}
+          countStart={countStart}
+        />
       </section>
     </main>
   );
 };
 
 export default Home;
-//https://site--marvel-ds--5gjnlvwzlmps.code.run

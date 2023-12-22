@@ -12,17 +12,17 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchuser = async () => {
-      try {
-        const res = await axios.get(
-          "https://site--marvel-ds--5gjnlvwzlmps.code.run/refresh",
-          {
+      if (update === false) {
+        try {
+          const res = await axios.get("process.env.SERV_URL/refresh", {
             withCredentials: true,
-          }
-        );
-        setUser(res.data);
-        setUpdate(true);
-      } catch (err) {
-        console.log("Error loading favorites");
+          });
+          setUser(res.data);
+          setUpdate(true);
+          console.log(res.data);
+        } catch (err) {
+          console.log("Error loading ,no User found");
+        }
       }
     };
     fetchuser();
