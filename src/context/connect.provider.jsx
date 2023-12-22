@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import { createContext } from "react";
 import { useState } from "react";
-import { config, parse } from "dotenv";
 
 export const AuthContext = createContext();
 
@@ -16,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       if (update === false) {
         try {
           const res = await axios.get(
-            `${import.meta.env.REACT_APP_SERV_URL}/refresh`,
+            `${import.meta.env.VITE_API_URL}/refresh`,
             {
               withCredentials: true,
             }

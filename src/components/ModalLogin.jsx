@@ -37,7 +37,7 @@ const ModalLogin = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.REACT_APP_SERV_URL}/login`,
+        `${import.meta.env.VITE_API_URL}/login`,
         {
           email: email,
           password: password,
