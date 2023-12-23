@@ -45,6 +45,7 @@ const ModalLogin = () => {
       );
       setIsAuthenticated(true);
       setUser(response.data);
+      localStorage.setItem("jwt", response.data.token);
       console.log(response.cookie);
       console.log(response.data);
       closeModal();
