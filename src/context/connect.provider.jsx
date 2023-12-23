@@ -12,20 +12,15 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchuser = async () => {
-      if (update === false) {
-        try {
-          const res = await axios.get(
-            `${import.meta.env.VITE_API_URL}/refresh`,
-            {
-              withCredentials: true,
-            }
-          );
-          setUser(res.data);
-          setUpdate(true);
-          console.log(res.data);
-        } catch (err) {
-          console.log("Error loading ,no User found");
-        }
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/refresh`, {
+          withCredentials: true,
+        });
+        setUser(res.data);
+        setUpdate(true);
+        console.log(res.data);
+      } catch (err) {
+        console.log("Error loading ,no User found");
       }
     };
     fetchuser();
