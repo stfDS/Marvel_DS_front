@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../src/context/connect.provider";
+import React from "react";
 
 const HadleClickPages = ({ skip, count, setCount, setSkip, countStart }) => {
-  const { setUpdate, update } = useContext(AuthContext);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -30,16 +27,12 @@ const HadleClickPages = ({ skip, count, setCount, setSkip, countStart }) => {
     setCount(countStart);
     scrollToTop();
   };
-  const handleUpdate = () => {
-    setUpdate(!update);
-  };
 
   return (
     <div className="bottom-btn">
       <button onClick={handleClickMinus}>Previous</button>
       <button onClick={handleClickStart}>First Page</button>
       <button onClick={handleClickPlus}>Next</button>
-      <button onClick={handleUpdate}> update </button>
     </div>
   );
 };
