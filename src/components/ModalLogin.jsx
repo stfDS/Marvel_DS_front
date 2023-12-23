@@ -45,7 +45,6 @@ const ModalLogin = () => {
       );
       setIsAuthenticated(true);
       setUser(response.data);
-      document.cookie = `token=${response.data.token};max-age=86400;path=/;secure;SameSite=Lax`;
       console.log(response.token);
       console.log(response.cookie);
       console.log(response.data);
