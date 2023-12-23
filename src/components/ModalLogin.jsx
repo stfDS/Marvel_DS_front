@@ -41,8 +41,7 @@ const ModalLogin = () => {
         {
           email: email,
           password: password,
-        },
-        { withCredentials: true }
+        }
       );
       setIsAuthenticated(true);
       setUser(response.data);
