@@ -2,7 +2,6 @@ import axios from "axios";
 import Modal from "react-modal";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/connect.provider";
-// import { Cookies } from "react-cookie";
 
 const customStyles = {
   content: {
