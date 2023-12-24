@@ -18,13 +18,13 @@ export const AuthProvider = ({ children }) => {
         });
         setUser(res.data);
         setUpdate(true);
-        console.log(res.data);
+        console.log(res.data, "fetch");
       } catch (err) {
         console.log("Error loading ,no User found");
       }
     };
     fetchuser();
-  }, [update]);
+  }, [update, isAuthenticated]);
 
   return (
     <AuthContext.Provider
