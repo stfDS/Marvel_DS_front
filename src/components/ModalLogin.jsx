@@ -47,16 +47,6 @@ const ModalLogin = () => {
       );
       setIsAuthenticated(true);
       setUser(response.data);
-      // Cookies.set(
-      //   "jwt",
-      //   response.data.token,
-      //   { maxage: 86400 },
-      //   { path: "/" },
-      //   { secure: true },
-      //   { SameSite: "none" }
-      // );
-      // console.log(response.token);
-      // console.log(response.cookie);
       console.log(response.data);
       closeModal();
     } catch (error) {
