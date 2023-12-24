@@ -13,13 +13,16 @@ const CharacterComics = () => {
   useEffect(() => {
     const fetchData = async () => {
       const characterResponse = await axios.get(
-        `${import.meta.env.VITE_API_URL}/character/${characterId}`
+        `${import.meta.env.VITE_API_URL}/character/${characterId}`,
+        { withCredentials: true }
       );
       setCharacterData(characterResponse.data);
 
       if (characterResponse.data.comics) {
         const comicsPromises = characterResponse.data.comics.map((comicId) =>
-          axios.get(`${import.meta.env.VITE_API_URL}/comic/${comicId}`)
+          axios.get(`${import.meta.env.VITE_API_URL}/comic/${comicId}`, {
+            withCredentials: true,
+          })
         );
 
         const comicsResponses = await Promise.all(comicsPromises);

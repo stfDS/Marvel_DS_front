@@ -2,6 +2,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/connect.provider";
+// import { Cookies } from "react-cookie";
 
 const customStyles = {
   content: {
@@ -41,13 +42,21 @@ const ModalLogin = () => {
         {
           email: email,
           password: password,
-        }
+        },
+        { withCredentials: true }
       );
       setIsAuthenticated(true);
       setUser(response.data);
-      document.cookie = `jwt=${response.data.token};max-age=86400;path=/;secure;SameSite=None`;
-      console.log(response.token);
-      console.log(response.cookie);
+      // Cookies.set(
+      //   "jwt",
+      //   response.data.token,
+      //   { maxage: 86400 },
+      //   { path: "/" },
+      //   { secure: true },
+      //   { SameSite: "none" }
+      // );
+      // console.log(response.token);
+      // console.log(response.cookie);
       console.log(response.data);
       closeModal();
     } catch (error) {
