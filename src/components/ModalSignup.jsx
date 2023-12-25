@@ -44,8 +44,8 @@ const ModalSigup = () => {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
-      // closeModal();
+
+      closeModal();
 
       if (response.status === 201) {
         alert(response.data.message);

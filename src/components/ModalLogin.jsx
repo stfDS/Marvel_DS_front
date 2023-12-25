@@ -46,7 +46,6 @@ const ModalLogin = () => {
       );
       setIsAuthenticated(true);
       setUser(response.data);
-      console.log(response.data);
       closeModal();
     } catch (error) {
       console.log(error);

@@ -27,19 +27,25 @@
 }
 .solo-character-comics {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
 .solo-comic-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: calc((100% - 100px) / 5);
 }
 .solo-character-comic-title {
   text-align: center;
-  height: 35px;
+  height: 1.9rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 .solo-character-comic-title h2 {
   color: blanchedalmond;
-  font-size: 15px;
+  font-size: 0.9prem;
 }
 .solo-character-comic-pic {
   width: 100%;

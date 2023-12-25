@@ -22,6 +22,7 @@
 }
 .all-comics-pic img {
   max-width: 190px;
+  aspect-ratio: 19/29;
   object-fit: cover;
 }
 .all-comics-description {

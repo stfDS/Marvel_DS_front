@@ -16,9 +16,9 @@ export const AuthProvider = ({ children }) => {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/refresh`, {
           withCredentials: true,
         });
+        setIsAuthenticated(true);
         setUser(res.data);
         setUpdate(true);
-        console.log(res.data, "fetch");
       } catch (err) {
         console.log("Error loading ,no User found");
       }

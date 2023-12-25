@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ModalDescription from "../components/ModalDescription";
+import AddEllipsis from "../../functions/addEllipsis";
 
 const CharacterComics = () => {
   const [loading, setLoading] = useState(true);
@@ -72,7 +74,7 @@ const CharacterComics = () => {
           return (
             <article className="solo-comic-sheet" key={comic.title}>
               <div className="solo-character-comic-title">
-                <h2> {comic.title} </h2>
+                <h2> {AddEllipsis(comic.title, 30)} </h2>
               </div>
               <div className="solo-character-comic-pic">
                 {comic.thumbnail.path ===
@@ -92,9 +94,11 @@ const CharacterComics = () => {
                   />
                 )}
               </div>
-              {/* <div className="solo-character-comic-description">
-                <p>{comic.description}</p>
-              </div> */}
+
+              <ModalDescription
+                title={comic.title}
+                description={comic.description}
+              />
             </article>
           );
         })}

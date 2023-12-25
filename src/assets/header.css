@@ -9,16 +9,27 @@ header a:hover {
 .top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 .logo-top {
+  width: calc(100% / 3);
   height: 100%;
+  flex: 1;
 }
 .logo-top img {
   height: 100%;
 }
 .top-nav {
+  height: 100%;
+  flex: 1;
+  justify-content: center;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 1rem;
   margin-right: 10px;
+}
+.header-log {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  gap: 1rem;
 }

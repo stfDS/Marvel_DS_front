@@ -11,7 +11,7 @@ const Comics = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
   const [countStart, setCountStart] = useState(0);
-
+  const [page, setPage] = useState(1);
   useEffect(() => {
     const fetchData = async () => {
       if (title === "") {
@@ -64,14 +64,22 @@ const Comics = () => {
               </div>
 
               <div className="all-comics-pic">
-                <img
-                  src={
-                    comics.thumbnail.path.replace("http", "https") +
-                    "." +
-                    comics.thumbnail.extension
-                  }
-                  alt={comics.name}
-                />
+                {comics.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                comics.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                  <img
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
+                    alt={comics.name}
+                  />
+                ) : (
+                  <img
+                    src={
+                      comics.thumbnail.path + "." + comics.thumbnail.extension
+                    }
+                    alt={comics.name}
+                  />
+                )}
                 {comics.description && (
                   <div className="all-comics-description">
                     <ModalDescription
@@ -87,6 +95,8 @@ const Comics = () => {
       </section>
       <section className="page-skip">
         <HadleClickPages
+          page={page}
+          setPage={setPage}
           skip={skip}
           count={count}
           setCount={setCount}

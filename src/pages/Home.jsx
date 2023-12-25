@@ -11,6 +11,7 @@ const Home = () => {
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
   const [countStart, setCountStart] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +60,6 @@ const Home = () => {
         {homeData.results.map((character) => {
           return (
             <Link
-              //
               to={`/character/${character._id}`}
               key={character._id}
               className="home-character-sheet"
@@ -69,26 +69,33 @@ const Home = () => {
               </div>
 
               <div className="home-character-pic">
-                <img
-                  src={
-                    character.thumbnail.path.replace("http", "https") +
-                    "." +
-                    character.thumbnail.extension
-                  }
-                  alt={character.name}
-                />
+                {character.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                character.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                  <img
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+                    alt={character.name}
+                  />
+                ) : (
+                  <img
+                    src={
+                      character.thumbnail.path +
+                      "." +
+                      character.thumbnail.extension
+                    }
+                    alt={character.name}
+                  />
+                )}
               </div>
-              {/* {character.description && (
-                <div className="home-character-description">
-                  <p>{character.description}</p>
-                </div>
-              )} */}
             </Link>
           );
         })}
       </section>
       <section className="page-skip">
         <HadleClickPages
+          page={page}
+          setPage={setPage}
           skip={skip}
           count={count}
           setCount={setCount}
