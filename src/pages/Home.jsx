@@ -81,7 +81,7 @@ const Home = () => {
                 ) : (
                   <img
                     src={
-                      character.thumbnail.path +
+                      character.thumbnail.path.replace("http:", "https:") +
                       "." +
                       character.thumbnail.extension
                     }

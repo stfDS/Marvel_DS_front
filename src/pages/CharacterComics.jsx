@@ -46,7 +46,7 @@ const CharacterComics = () => {
           <h1> {characterData.name} </h1>
         </div>
         <div className="solo-character-pic">
-          {characterData.thumbnail.path ===
+          {characterData.thumbnail.path.replace("http:", "https:") ===
           "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
             <img
               src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
@@ -55,7 +55,7 @@ const CharacterComics = () => {
           ) : (
             <img
               src={
-                characterData.thumbnail.path.replace("http", "https") +
+                characterData.thumbnail.path.replace("http:", "https:") +
                 "." +
                 characterData.thumbnail.extension
               }

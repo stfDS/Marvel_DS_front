@@ -77,7 +77,11 @@ const Comics = () => {
                   />
                 ) : (
                   <img
-                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    src={
+                      comic.thumbnail.path.replace("http:", "https:") +
+                      "." +
+                      comic.thumbnail.extension
+                    }
                     alt={comic.name}
                   />
                 )}
