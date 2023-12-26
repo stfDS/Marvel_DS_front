@@ -29,7 +29,7 @@ const AddComicFav = ({ comic }) => {
     } catch (error) {
       if (error.response.status === 406) {
         toast.error(
-          `${AddEllipsis(error.response.data, 10)} already added to favorites`
+          `${AddEllipsis(error.response.data, 15)} already added to favorites`
         );
       } else {
         toast.error(error.message);
