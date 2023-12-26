@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
+import AddCharacterFav from "../components/AddCaracterFav";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -54,21 +55,21 @@ const Home = () => {
           }}
           type="search"
           id="serch-character"
+          placeholder="Reshearch"
         />
       </section>
       <section className="character-home">
         {homeData.results.map((character) => {
           return (
-            <Link
-              to={`/character/${character._id}`}
-              key={character._id}
-              className="home-character-sheet"
-            >
+            <article key={character._id} className="home-character-sheet">
               <div className="home-character-name">
                 <h3>{AddEllipsis(character.name, 10)}</h3>
               </div>
-
-              <div className="home-character-pic">
+              <AddCharacterFav character={character} />
+              <Link
+                to={`/character/${character._id}`}
+                className="home-character-pic"
+              >
                 {character.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
                 character.thumbnail.path ===
@@ -87,8 +88,8 @@ const Home = () => {
                     alt={character.name}
                   />
                 )}
-              </div>
-            </Link>
+              </Link>
+            </article>
           );
         })}
       </section>

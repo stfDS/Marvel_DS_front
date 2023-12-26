@@ -6,11 +6,13 @@ import CharacterComics from "./pages/CharacterComics";
 import Comics from "./pages/Comics";
 import Favorites from "./pages/Favorites";
 import { AuthProvider } from "./context/connect.provider";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
+        <Toaster />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

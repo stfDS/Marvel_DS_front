@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ModalDescription from "../components/ModalDescription";
 import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
+import AddComicFav from "../components/AddComicFav";
 
 const Comics = () => {
   const [loading, setLoading] = useState(true);
@@ -53,38 +54,38 @@ const Comics = () => {
           }}
           type="search"
           id="serch-character"
+          placeholder="Reshearch"
         />
       </section>
       <section className="all-comics">
-        {comicsData.results.map((comics) => {
+        {comicsData.results.map((comic) => {
           return (
-            <div key={comics._id} className="all-comics-sheet">
+            <div key={comic._id} className="all-comics-sheet">
               <div className="all-comics-name">
-                <h3>{AddEllipsis(comics.title, 14)} </h3>
+                <h3>{AddEllipsis(comic.title, 14)} </h3>
               </div>
+              <AddComicFav comic={comic} />
 
               <div className="all-comics-pic">
-                {comics.thumbnail.path ===
+                {comic.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                comics.thumbnail.path ===
+                comic.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
                   <img
                     src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
-                    alt={comics.name}
+                    alt={comic.name}
                   />
                 ) : (
                   <img
-                    src={
-                      comics.thumbnail.path + "." + comics.thumbnail.extension
-                    }
-                    alt={comics.name}
+                    src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+                    alt={comic.name}
                   />
                 )}
-                {comics.description && (
+                {comic.description && (
                   <div className="all-comics-description">
                     <ModalDescription
-                      description={comics.description}
-                      title={comics.title}
+                      description={comic.description}
+                      title={comic.title}
                     />
                   </div>
                 )}

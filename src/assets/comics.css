@@ -3,7 +3,7 @@
 
   flex-wrap: wrap;
 }
-.all-comics h3 {
+.all-comics-name h3 {
   text-align: center;
   color: crimson;
 }
@@ -12,7 +12,7 @@
   width: calc(100% / 5);
 }
 .all-comics-name {
-  padding: 1rem;
+  width: 100%;
 }
 .all-comics-pic {
   display: flex;
@@ -26,6 +26,5 @@
   object-fit: cover;
 }
 .all-comics-description {
-  color: aliceblue;
   padding: 5px;
 }

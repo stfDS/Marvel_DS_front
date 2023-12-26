@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/connect.provider";
+import toast from "react-hot-toast";
 
 const Logout = () => {
   const { setUser, setIsAuthenticated } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Logout = () => {
       setIsAuthenticated(false);
       setUser(null);
     } catch (error) {
-      console.error("Erreur lors de la déconnexion", error);
+      toast.error("Error disconnecting");
     }
   };
 

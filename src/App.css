@@ -70,3 +70,21 @@ body {
   border-color: gold;
   border-radius: 1rem;
 }
+.add-fav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  color: aliceblue;
+}
+.add-fav span:hover {
+  cursor: pointer;
+  color: gold;
+}
+.description-title {
+  margin-bottom: 1rem;
+  color: red;
+}
+.description-modal-text {
+  margin-bottom: 1rem;
+  color: aliceblue;
+}

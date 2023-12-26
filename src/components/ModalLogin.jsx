@@ -2,6 +2,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/connect.provider";
+import toast from "react-hot-toast";
 
 const customStyles = {
   content: {
@@ -46,9 +47,11 @@ const ModalLogin = () => {
       );
       setIsAuthenticated(true);
       setUser(response.data);
+      console.log(response.data);
+      toast.success(`Connected, Welcome ${response.data.account.username}`);
       closeModal();
     } catch (error) {
-      console.log(error);
+      toast.error("incorrect parameters");
     }
   };
 

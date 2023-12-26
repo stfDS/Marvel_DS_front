@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -57,6 +58,7 @@ const ModalSigup = () => {
 
   return (
     <div>
+      <Toaster />
       <button className="btn-modal" onClick={openModal}>
         Signup
       </button>
