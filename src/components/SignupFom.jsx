@@ -16,7 +16,8 @@ export const SignupFom = ({ closeModal }) => {
           username: username,
           email: email,
           password: password,
-        }
+        },
+        { withCredentials: true }
       );
 
       if (closeModal) {
@@ -27,7 +28,7 @@ export const SignupFom = ({ closeModal }) => {
         alert(response.data.message);
       }
     } catch (error) {
-      toast.error(error);
+      toast.error(error.response.data.message);
     }
   };
 

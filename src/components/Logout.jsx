@@ -7,7 +7,9 @@ const Logout = () => {
   const { setUser, setIsAuthenticated } = useContext(AuthContext);
   const handleLogout = async () => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/logout`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/logout`, {
+        withCredentials: true,
+      });
       setIsAuthenticated(false);
       setUser(null);
     } catch (error) {

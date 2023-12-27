@@ -16,7 +16,8 @@ export const LoginForm = ({ closeModal }) => {
         {
           email: email,
           password: password,
-        }
+        },
+        { withCredentials: true }
       );
       setIsAuthenticated(true);
       setUser(response.data);
