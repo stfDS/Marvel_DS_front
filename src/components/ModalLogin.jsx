@@ -1,8 +1,7 @@
-import axios from "axios";
 import Modal from "react-modal";
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/connect.provider";
-import toast from "react-hot-toast";
+
+import { LoginForm } from "./LoginForm";
+import { useState } from "react";
 
 const customStyles = {
   content: {
@@ -17,16 +16,14 @@ const customStyles = {
     flexDirection: "column",
     alignItems: "center",
   },
-  // overlay: {
-  //   backgroundColor: "",
-  // },
+  overlay: {
+    backgroundColor: "none",
+  },
 };
 
 const ModalLogin = () => {
-  const { setUser, setIsAuthenticated } = useContext(AuthContext);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   function openModal() {
     setIsOpen(true);
   }
@@ -34,26 +31,6 @@ const ModalLogin = () => {
   function closeModal() {
     setIsOpen(false);
   }
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/login`,
-        {
-          email: email,
-          password: password,
-        },
-        { withCredentials: true }
-      );
-      setIsAuthenticated(true);
-      setUser(response.data);
-      console.log(response.data);
-      toast.success(`Connected, Welcome ${response.data.account.username}`);
-      closeModal();
-    } catch (error) {
-      toast.error("incorrect parameters");
-    }
-  };
 
   return (
     <div>
@@ -72,29 +49,8 @@ const ModalLogin = () => {
           Login
         </h3>
 
-        <div>
-          <form>
-            <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-              value={email}
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-              value={password}
-            />
-          </form>
-        </div>
-        <input type="submit" onClick={handleSubmit} />
+        <LoginForm closeModal={closeModal} />
+
         <button className="btn-modal" onClick={closeModal}>
           close
         </button>

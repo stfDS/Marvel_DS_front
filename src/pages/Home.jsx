@@ -18,8 +18,7 @@ const Home = () => {
     const fetchData = async () => {
       if (name === "") {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/characters/skip/${skip}`,
-          { withCredentials: true }
+          `${import.meta.env.VITE_API_URL}/characters/skip/${skip}`
         );
 
         setHomeData(response.data);
@@ -28,10 +27,7 @@ const Home = () => {
         setLoading(false);
       } else if (name !== "") {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }/characters/skip/name/${skip}/${name}`,
-          { withCredentials: true }
+          `${import.meta.env.VITE_API_URL}/characters/skip/name/${skip}/${name}`
         );
 
         setHomeData(response.data);

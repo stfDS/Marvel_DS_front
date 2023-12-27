@@ -1,0 +1,21 @@
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+form input {
+  background-color: darkgrey;
+  padding: 0.1rem 1rem;
+  border-radius: 10px;
+  border: solid 0.1rem red;
+}
+
+.submit input {
+  color: gold;
+  background-color: red;
+  border: solid 0.1rem gold;
+}

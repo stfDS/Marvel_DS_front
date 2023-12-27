@@ -2,6 +2,8 @@
 @import "./assets/home.css";
 @import "./assets/comics.css";
 @import "./assets/character-comics.css";
+@import "./assets/form.css";
+@import "./assets/favorites.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 
@@ -14,6 +16,9 @@ a {
 }
 a:hover {
   color: gold;
+}
+h1 {
+  font-size: 35px;
 }
 h3 {
   font-size: 22px;
@@ -34,6 +39,10 @@ body {
   width: 500px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
+  border-color: red;
+}
+:focus {
+  outline-color: gold;
 }
 .container {
   /* max-width: 1350px; */
