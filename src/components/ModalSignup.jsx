@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
-import { SignupFom } from "./SignupFom";
+import { SignupForm } from "./SignupForm";
 
 const customStyles = {
   content: {
@@ -47,10 +47,10 @@ const ModalSigup = () => {
           className="description-title
         "
         >
-          sign
+          Signup
         </h3>
 
-        <SignupFom closeModal={closeModal} />
+        <SignupForm closeModal={closeModal} />
 
         <button className="btn-modal" onClick={closeModal}>
           close

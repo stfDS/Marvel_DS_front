@@ -12,6 +12,7 @@ const Logout = () => {
       });
       setIsAuthenticated(false);
       setUser(null);
+      toast.success("Disconnected");
     } catch (error) {
       toast.error("Error disconnecting");
     }

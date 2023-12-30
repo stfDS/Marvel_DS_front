@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
-import AddCharacterFav from "../components/AddCaracterFav";
+import AddCharacterFav from "../components/AddCharacterFav";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -43,18 +43,22 @@ const Home = () => {
     fetchData();
   }, [skip, name]);
 
-  return loading === true ? (
-    <h1>Loading</h1>
+  return loading ? (
+    <div className="loader-div">
+      <h1>
+        Loading <span className="loader"></span>
+      </h1>
+    </div>
   ) : (
     <main className="main-container">
-      <section className="serch">
+      <section className="search">
         <input
           onChange={(event) => {
             setSkip(0);
             setName(event.target.value);
           }}
           type="search"
-          id="serch-character"
+          id="search-character"
           placeholder="Reshearch"
         />
       </section>
@@ -75,14 +79,14 @@ const Home = () => {
                 character.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
                   <img
-                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
                     alt={character.name}
                   />
                 ) : (
                   <img
                     src={
                       character.thumbnail.path.replace("http:", "https:") +
-                      "." +
+                      "/portrait_uncanny." +
                       character.thumbnail.extension
                     }
                     alt={character.name}

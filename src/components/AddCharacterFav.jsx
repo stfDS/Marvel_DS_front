@@ -12,7 +12,7 @@ const AddCharacterFav = ({ character }) => {
       if (isAuthenticated) {
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/addfav/character`,
-          { characterId: character._id, title: character.title },
+          { characterId: character._id, title: character.name },
           {
             withCredentials: true,
           }

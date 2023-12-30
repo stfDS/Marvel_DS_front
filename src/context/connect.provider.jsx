@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       }
     };
     fetchuser();
-  }, [update]);
+  }, [update, isAuthenticated]);
 
   return (
     <AuthContext.Provider

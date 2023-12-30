@@ -24,13 +24,10 @@ const Comics = () => {
         setCount(response.data.count);
         setCountStart(response.data.count);
         setLoading(false);
-      } else if (title !== "") {
-        setLoading(true);
-
+      }
+      if (title) {
         const response = await axios.get(
-          `${
-            import.meta.env.REACT_APP_SERV_URL
-          }/comics/title/skip/${title}/${skip}`,
+          `${import.meta.env.VITE_API_URL}/comics/skip/title/${skip}/${title}`,
           { withCredentials: true }
         );
         setComicsData(response.data);
@@ -42,30 +39,33 @@ const Comics = () => {
     fetchData();
   }, [title, skip]);
 
-  return loading === true ? (
-    <h1>Loading</h1>
+  return loading ? (
+    <div className="loader-div">
+      <h1>
+        Loading <span className="loader"></span>
+      </h1>
+    </div>
   ) : (
     <main className="main-container">
-      <section className="serch">
+      <section className="search">
         <input
           onChange={(event) => {
             setSkip(0);
             setTitle(event.target.value);
           }}
           type="search"
-          id="serch-character"
+          id="search-comics"
           placeholder="Reshearch"
         />
       </section>
       <section className="all-comics">
         {comicsData.results.map((comic) => {
           return (
-            <div key={comic._id} className="all-comics-sheet">
+            <article key={comic._id} className="all-comics-sheet">
               <div className="all-comics-name">
                 <h3>{AddEllipsis(comic.title, 14)} </h3>
               </div>
               <AddComicFav comic={comic} />
-
               <div className="all-comics-pic">
                 {comic.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
@@ -79,7 +79,7 @@ const Comics = () => {
                   <img
                     src={
                       comic.thumbnail.path.replace("http:", "https:") +
-                      "." +
+                      "/portrait_uncanny." +
                       comic.thumbnail.extension
                     }
                     alt={comic.name}
@@ -94,7 +94,7 @@ const Comics = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </article>
           );
         })}
       </section>

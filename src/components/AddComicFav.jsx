@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/connect.provider";
 
 const AddComicFav = ({ comic }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setUpdate, update } = useContext(AuthContext);
 
   const handleAddComFav = async () => {
     try {
@@ -18,11 +18,8 @@ const AddComicFav = ({ comic }) => {
             withCredentials: true,
           }
         );
-        if (res.status === 201) {
-          toast.success(`${AddEllipsis(res.data, 10)} Added to favorites`);
-        }
-
-        toast.error(`${AddEllipsis(res.data, 10)} already added to favorites`);
+        toast.success(`${AddEllipsis(res.data, 10)} Added to favorites`);
+        setUpdate(!update);
       } else {
         toast.error("Login To Add Favorites");
       }

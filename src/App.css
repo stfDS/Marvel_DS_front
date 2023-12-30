@@ -10,8 +10,47 @@
 body {
   font-family: "Black Ops One", sans-serif;
 }
+.loader {
+  width: 35px;
+  height: 35px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #ff3d00 transparent;
+}
+.loader-div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 a {
   text-decoration: none;
+  font-size: 1.2rem;
   color: red;
 }
 a:hover {
@@ -27,13 +66,13 @@ h3 {
 body {
   background-color: #35363a;
 }
-.serch {
+.search {
   display: flex;
   justify-content: center;
   padding: 20px 0;
   margin-bottom: 20px;
 }
-.serch input {
+.search input {
   padding-left: 10px;
   height: 25px;
   width: 500px;
@@ -45,13 +84,13 @@ body {
   outline-color: gold;
 }
 .container {
-  /* max-width: 1350px; */
+  max-width: 1980px;
   height: 100%;
   padding: 0 10px;
   margin: 0 auto;
 }
 .main-container {
-  width: 1400px;
+  max-width: 1400px;
   padding: 0 5px;
   margin: 0 auto;
 }
@@ -73,13 +112,14 @@ body {
 .btn-modal {
   width: fit-content;
   padding: 0 1rem;
-
+  font-size: 0.9rem;
   color: gold;
   background-color: red;
   border-color: gold;
   border-radius: 1rem;
 }
 .add-fav {
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   margin-bottom: 0.5rem;

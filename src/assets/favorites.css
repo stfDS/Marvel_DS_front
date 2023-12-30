@@ -1,7 +1,36 @@
+.fav-title {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+.fav-title h1 {
+  color: red;
+}
 .log-fav-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   margin: 2rem;
+}
+.characters-fav {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.comics-fav {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.fav-comics-name {
+  margin-bottom: 1.5rem;
+}
+.fav-character-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fav-character-pic {
+  margin-bottom: 0.5rem;
 }

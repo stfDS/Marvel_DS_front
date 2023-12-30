@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModalDescription from "../components/ModalDescription";
 import AddEllipsis from "../../functions/addEllipsis";
+import AddCharacterFav from "../components/AddCharacterFav";
 
 const CharacterComics = () => {
   const [loading, setLoading] = useState(true);
@@ -46,23 +47,26 @@ const CharacterComics = () => {
           <h1> {characterData.name} </h1>
         </div>
         <div className="solo-character-pic">
-          {characterData.thumbnail.path.replace("http:", "https:") ===
-          "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+          {characterData.thumbnail.path ===
+            "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+          characterData.thumbnail.path ===
+            "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
             <img
-              src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
+              src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
               alt={characterData.name}
             />
           ) : (
             <img
               src={
                 characterData.thumbnail.path.replace("http:", "https:") +
-                "." +
+                "/portrait_uncanny." +
                 characterData.thumbnail.extension
               }
               alt={characterData.name}
             />
           )}
         </div>
+        <AddCharacterFav character={characterData} />
         {characterData.description && (
           <div className="character-com-character-description">
             <p>{characterData.description}</p>
@@ -78,7 +82,9 @@ const CharacterComics = () => {
               </div>
               <div className="solo-character-comic-pic">
                 {comic.thumbnail.path ===
-                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ? (
+                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                comic.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
                   <img
                     src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1702737418/Marvel/DALL_E-hero_r7yvqr.png"
                     alt={comic.name}
@@ -87,7 +93,7 @@ const CharacterComics = () => {
                   <img
                     src={
                       comic.thumbnail.path.replace("http", "https") +
-                      "." +
+                      "/portrait_uncanny." +
                       comic.thumbnail.extension
                     }
                     alt={comic.name}

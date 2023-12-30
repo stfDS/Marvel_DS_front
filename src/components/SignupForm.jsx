@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export const SignupFom = ({ closeModal }) => {
+export const SignupForm = ({ closeModal }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,7 @@ export const SignupFom = ({ closeModal }) => {
       }
 
       if (response.status === 201) {
-        alert(response.data.message);
+        toast.success(response.data.message);
       }
     } catch (error) {
       toast.error(error.response.data.message);
