@@ -8,6 +8,7 @@ import AddEllipsis from "../../functions/addEllipsis";
 import { Link } from "react-router-dom";
 import ModalDescription from "../components/ModalDescription";
 import RmComicFav from "../components/RmComicFav";
+import RmCharacterFav from "../components/RmCharacterFav";
 
 const Favorites = () => {
   const { isAuthenticated, user, update } = useContext(AuthContext);
@@ -74,6 +75,9 @@ const Favorites = () => {
               >
                 <div className="home-character-name">
                   <h3>{AddEllipsis(character.name, 10)}</h3>
+                </div>
+                <div>
+                  <RmCharacterFav comic={character} />
                 </div>
 
                 <Link

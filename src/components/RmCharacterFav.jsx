@@ -4,21 +4,20 @@ import toast from "react-hot-toast";
 import { IoIosStar } from "react-icons/io";
 import { AuthContext } from "../context/connect.provider";
 
-const RmComicFav = ({ comic }) => {
-  const { update, setUpdate } = useContext(AuthContext);
+const RmCharacterFav = ({ character }) => {
+  const { update, setUdate } = useContext(AuthContext);
 
   const handleRemove = async () => {
     try {
       const res = await axios.put(
         `${import.meta.env.VITE_API_URL}/rmfav/comic`,
-        { comicId: comic._id },
+        { comicId: character._id },
         {
           withCredentials: true,
         }
       );
-      console.log(res);
       toast.success(res.data.message);
-      setUpdate(!update);
+      setUdate(!update);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -34,4 +33,4 @@ const RmComicFav = ({ comic }) => {
   );
 };
 
-export default RmComicFav;
+export default RmCharacterFav;
