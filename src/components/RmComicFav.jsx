@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { IoIosStar } from "react-icons/io";
 import { AuthContext } from "../context/connect.provider";

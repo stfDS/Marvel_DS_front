@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/connect.provider";
-
 import { LoginForm } from "../components/LoginForm";
 import { SignupForm } from "../components/SignupForm";
 import axios from "axios";
@@ -77,7 +76,7 @@ const Favorites = () => {
                   <h3>{AddEllipsis(character.name, 10)}</h3>
                 </div>
                 <div>
-                  <RmCharacterFav comic={character} />
+                  <RmCharacterFav character={character} />
                 </div>
 
                 <Link
