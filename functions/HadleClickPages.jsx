@@ -43,7 +43,6 @@ const HadleClickPages = ({
     <div className="bottom-btn">
       <button onClick={handleClickMinus}>Previous</button>
       {page !== 1 && <button onClick={handleClickStart}>First Page</button>}
-
       <button onClick={handleClickPlus}>Next</button>
     </div>
   );

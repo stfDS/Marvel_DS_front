@@ -43,3 +43,6 @@
 .rm-fav:hover {
   color: red;
 }
+.no-fav {
+  text-align: center;
+}

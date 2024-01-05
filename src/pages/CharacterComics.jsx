@@ -17,14 +17,14 @@ const CharacterComics = () => {
     const fetchData = async () => {
       const characterResponse = await axios.get(
         `${import.meta.env.VITE_API_URL}/character/${characterId}`,
-        { withCredentials: true }
+        { withCredentials: false }
       );
       setCharacterData(characterResponse.data);
 
       if (characterResponse.data.comics) {
         const comicsPromises = characterResponse.data.comics.map((comicId) =>
           axios.get(`${import.meta.env.VITE_API_URL}/comic/${comicId}`, {
-            withCredentials: true,
+            withCredentials: false,
           })
         );
 
@@ -78,7 +78,7 @@ const CharacterComics = () => {
           return (
             <article className="solo-comic-sheet" key={comic.title}>
               <div className="solo-character-comic-title">
-                <h2> {AddEllipsis(comic.title, 30)} </h2>
+                <h2> {AddEllipsis(comic.title, 12)} </h2>
               </div>
               <div className="solo-character-comic-pic">
                 {comic.thumbnail.path ===

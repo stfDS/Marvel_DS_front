@@ -1,9 +1,11 @@
 @import "./assets/header.css";
-@import "./assets/home.css";
+@import "./assets/characters.css";
 @import "./assets/comics.css";
 @import "./assets/character-comics.css";
 @import "./assets/form.css";
 @import "./assets/favorites.css";
+@import "./assets/home.css";
+@import "./assets/footer.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 
@@ -136,4 +138,7 @@ body {
 .description-modal-text {
   margin-bottom: 1rem;
   color: aliceblue;
+}
+button {
+  cursor: pointer;
 }

@@ -1,0 +1,16 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+}
+footer h3 {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(216, 183, 35, 1) 0%,
+    rgba(255, 0, 0, 1) 75%,
+    rgba(255, 0, 0, 1) 100%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

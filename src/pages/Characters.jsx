@@ -1,43 +1,48 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ModalDescription from "../components/ModalDescription";
+import { Link } from "react-router-dom";
 import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
-import AddComicFav from "../components/AddComicFav";
+import AddCharacterFav from "../components/AddCharacterFav";
+import ModalDescription from "../components/ModalDescription";
 
-const Comics = () => {
+const Characters = () => {
   const [loading, setLoading] = useState(true);
-  const [comicsData, setComicsData] = useState(null);
-  const [title, setTitle] = useState("");
+  const [charactersData, setCharactersData] = useState(null);
+  const [name, setName] = useState("");
   const [skip, setSkip] = useState(0);
   const [count, setCount] = useState(0);
   const [countStart, setCountStart] = useState(0);
   const [page, setPage] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
-      if (title === "") {
+      if (name === "") {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/comics/skip/${skip}`,
+          `${import.meta.env.VITE_API_URL}/characters/skip/${skip}`,
           { withCredentials: false }
         );
-        setComicsData(response.data);
+
+        setCharactersData(response.data);
         setCount(response.data.count);
         setCountStart(response.data.count);
         setLoading(false);
-      }
-      if (title) {
+      } else if (name !== "") {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/comics/skip/title/${skip}/${title}`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/characters/skip/name/${skip}/${name}`,
           { withCredentials: false }
         );
-        setComicsData(response.data);
+
+        setCharactersData(response.data);
         setCount(response.data.count);
         setCountStart(response.data.count);
         setLoading(false);
       }
     };
     fetchData();
-  }, [title, skip]);
+  }, [skip, name]);
 
   return loading ? (
     <div className="loader-div">
@@ -51,49 +56,50 @@ const Comics = () => {
         <input
           onChange={(event) => {
             setSkip(0);
-            setTitle(event.target.value);
+            setName(event.target.value);
           }}
           type="search"
-          id="search-comics"
+          id="search-character"
           placeholder="Reshearch"
         />
       </section>
-      <section className="all-comics">
-        {comicsData.results.map((comic) => {
+      <section className="character-characters">
+        {charactersData.results.map((character) => {
           return (
-            <article key={comic._id} className="all-comics-sheet">
-              <div className="all-comics-name">
-                <h3>{AddEllipsis(comic.title, 14)} </h3>
+            <article key={character._id} className="characters-character-sheet">
+              <div className="characters-character-name">
+                <h3>{AddEllipsis(character.name, 10)}</h3>
               </div>
-              <AddComicFav comic={comic} />
-              <div className="all-comics-pic">
-                {comic.thumbnail.path ===
+              <AddCharacterFav character={character} />
+              <Link
+                to={`/character/${character._id}`}
+                className="characters-character-pic"
+              >
+                {character.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                comic.thumbnail.path ===
+                character.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
                   <img
-                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
-                    alt={comic.name}
+                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
+                    alt={character.name}
                   />
                 ) : (
                   <img
                     src={
-                      comic.thumbnail.path.replace("http:", "https:") +
+                      character.thumbnail.path.replace("http:", "https:") +
                       "/portrait_uncanny." +
-                      comic.thumbnail.extension
+                      character.thumbnail.extension
                     }
-                    alt={comic.name}
+                    alt={character.name}
                   />
                 )}
-                {comic.description && (
-                  <div className="all-comics-description">
-                    <ModalDescription
-                      description={comic.description}
-                      title={comic.title}
-                    />
-                  </div>
-                )}
-              </div>
+              </Link>
+              {character.description && (
+                <ModalDescription
+                  title={character.name}
+                  description={character.description}
+                />
+              )}
             </article>
           );
         })}
@@ -113,4 +119,4 @@ const Comics = () => {
   );
 };
 
-export default Comics;
+export default Characters;

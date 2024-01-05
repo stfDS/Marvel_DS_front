@@ -23,7 +23,7 @@ const Header = () => {
         </div>
         <div className="top-nav">
           <div>
-            <Link to="/">Characters</Link>
+            <Link to="/characters">Characters</Link>
           </div>
           <div>
             <Link to="/comics">Comics</Link>
