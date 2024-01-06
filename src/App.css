@@ -53,7 +53,7 @@ body {
 a {
   text-decoration: none;
   font-size: 1.2rem;
-  color: red;
+  color: crimson;
 }
 a:hover {
   color: gold;
@@ -62,7 +62,8 @@ h1 {
   font-size: 35px;
 }
 h3 {
-  font-size: 22px;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 body {
@@ -80,7 +81,7 @@ body {
   width: 500px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  border-color: red;
+  border-color: crimson;
 }
 :focus {
   outline-color: gold;
@@ -106,7 +107,7 @@ body {
   padding: 0.5rem;
   margin: 0.5rem;
   color: #ffd700;
-  background-color: red;
+  background-color: crimson;
   border-color: gold;
   border-radius: 1rem;
 }
@@ -116,7 +117,7 @@ body {
   padding: 0 1rem;
   font-size: 0.9rem;
   color: gold;
-  background-color: red;
+  background-color: crimson;
   border-color: gold;
   border-radius: 1rem;
 }
@@ -133,7 +134,7 @@ body {
 }
 .description-title {
   margin-bottom: 1rem;
-  color: red;
+  color: crimson;
 }
 .description-modal-text {
   margin-bottom: 1rem;

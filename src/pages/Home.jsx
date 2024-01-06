@@ -74,7 +74,7 @@ const Home = () => {
     </div>
   ) : (
     <main className="main-container">
-      <section className="home-secion">
+      <section className="home-section">
         <div className="home-div">
           <Link to={"/characters"}>
             <h1>All Characters</h1>
@@ -85,27 +85,29 @@ const Home = () => {
             duration={1000}
             delay={1000}
           >
-            {charactersData[index.b].thumbnail.path ===
-              "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-            charactersData[index.b].thumbnail.path ===
-              "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-              <img
-                src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
-                alt={charactersData[index.b].name}
-              />
-            ) : (
-              <img
-                src={
-                  charactersData[index.b].thumbnail.path.replace(
-                    "http:",
-                    "https:"
-                  ) +
-                  "/portrait_uncanny." +
-                  charactersData[index.b].thumbnail.extension
-                }
-                alt={charactersData[index.b].name}
-              />
-            )}
+            <Link to={"/characters"}>
+              {charactersData[index.b].thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+              charactersData[index.b].thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                <img
+                  src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
+                  alt={charactersData[index.b].name}
+                />
+              ) : (
+                <img
+                  src={
+                    charactersData[index.b].thumbnail.path.replace(
+                      "http:",
+                      "https:"
+                    ) +
+                    "/portrait_uncanny." +
+                    charactersData[index.b].thumbnail.extension
+                  }
+                  alt={charactersData[index.b].name}
+                />
+              )}
+            </Link>
           </Zoom>
         </div>
 
@@ -119,27 +121,29 @@ const Home = () => {
             duration={1000}
             delay={500}
           >
-            {comicsData[index.a].thumbnail.path ===
-              "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-            comicsData[index.a].thumbnail.path ===
-              "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-              <img
-                src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
-                alt={comicsData[index.a].title}
-              />
-            ) : (
-              <img
-                src={
-                  comicsData[index.a].thumbnail.path.replace(
-                    "http:",
-                    "https:"
-                  ) +
-                  "/portrait_uncanny." +
-                  comicsData[index.a].thumbnail.extension
-                }
-                alt={comicsData[index.a].title}
-              />
-            )}
+            <Link to={"/comics"}>
+              {comicsData[index.a].thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+              comicsData[index.a].thumbnail.path ===
+                "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                <img
+                  src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
+                  alt={comicsData[index.a].title}
+                />
+              ) : (
+                <img
+                  src={
+                    comicsData[index.a].thumbnail.path.replace(
+                      "http:",
+                      "https:"
+                    ) +
+                    "/portrait_uncanny." +
+                    comicsData[index.a].thumbnail.extension
+                  }
+                  alt={comicsData[index.a].title}
+                />
+              )}{" "}
+            </Link>
           </Zoom>
         </div>
       </section>

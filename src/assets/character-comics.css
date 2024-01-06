@@ -16,7 +16,7 @@
 .solo-character-pic img {
   width: 100%;
   object-fit: scale-down;
-  border: solid red;
+  border: solid crimson;
   border-radius: 5px 30px;
 }
 .character-com-character-description {
@@ -35,7 +35,7 @@
   border-top: solid gold 0.3rem;
   border-top-right-radius: 5rem;
   border-top-left-radius: 5rem;
-  border-bottom: solid red 0.3rem;
+  border-bottom: solid crimson 0.3rem;
   border-bottom-right-radius: 5rem;
   border-bottom-left-radius: 5rem;
 }

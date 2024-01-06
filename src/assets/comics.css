@@ -3,7 +3,6 @@
   flex-wrap: wrap;
 }
 .all-comics-name h3 {
-  text-align: center;
   color: crimson;
 }
 .all-comics-sheet {
@@ -23,6 +22,7 @@
   max-width: 200px;
   aspect-ratio: 20/29;
   object-fit: cover;
+  border-radius: 1rem;
 }
 .all-comics-description {
   padding: 5px;

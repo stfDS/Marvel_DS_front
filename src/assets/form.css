@@ -12,13 +12,13 @@ form input {
   background-color: darkgrey;
   padding: 0.1rem 1rem;
   border-radius: 10px;
-  border: solid 0.1rem red;
+  border: solid 0.1rem crimson;
 }
 
 .submit input {
   width: fit-content;
   padding: 0 1rem;
   color: gold;
-  background-color: red;
+  background-color: crimson;
   border: solid 0.1rem gold;
 }

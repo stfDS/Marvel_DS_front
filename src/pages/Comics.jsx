@@ -4,6 +4,7 @@ import ModalDescription from "../components/ModalDescription";
 import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
 import AddComicFav from "../components/AddComicFav";
+import { Fade } from "react-awesome-reveal";
 
 const Comics = () => {
   const [loading, setLoading] = useState(true);
@@ -67,24 +68,26 @@ const Comics = () => {
               </div>
               <AddComicFav comic={comic} />
               <div className="all-comics-pic">
-                {comic.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                comic.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-                  <img
-                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
-                    alt={comic.name}
-                  />
-                ) : (
-                  <img
-                    src={
-                      comic.thumbnail.path.replace("http:", "https:") +
-                      "/portrait_uncanny." +
-                      comic.thumbnail.extension
-                    }
-                    alt={comic.name}
-                  />
-                )}
+                <Fade>
+                  {comic.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                  comic.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                    <img
+                      src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
+                      alt={comic.name}
+                    />
+                  ) : (
+                    <img
+                      src={
+                        comic.thumbnail.path.replace("http:", "https:") +
+                        "/portrait_uncanny." +
+                        comic.thumbnail.extension
+                      }
+                      alt={comic.name}
+                    />
+                  )}{" "}
+                </Fade>
                 {comic.description && (
                   <div className="all-comics-description">
                     <ModalDescription

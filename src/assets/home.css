@@ -1,6 +1,13 @@
-.home-secion {
+.home-section {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 3rem;
+}
+.home-section a:last-child {
+  color: inherit;
+}
+.home-section a:hover:last-child {
+  color: inherit;
 }
 .home-div {
   display: flex;

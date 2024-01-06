@@ -5,6 +5,7 @@ import AddEllipsis from "../../functions/addEllipsis";
 import HadleClickPages from "../../functions/HadleClickPages";
 import AddCharacterFav from "../components/AddCharacterFav";
 import ModalDescription from "../components/ModalDescription";
+import { Fade } from "react-awesome-reveal";
 
 const Characters = () => {
   const [loading, setLoading] = useState(true);
@@ -67,32 +68,34 @@ const Characters = () => {
         {charactersData.results.map((character) => {
           return (
             <article key={character._id} className="characters-character-sheet">
-              <div className="characters-character-name">
+              <Link to={`/character/${character._id}`}>
                 <h3>{AddEllipsis(character.name, 10)}</h3>
-              </div>
+              </Link>
               <AddCharacterFav character={character} />
               <Link
                 to={`/character/${character._id}`}
                 className="characters-character-pic"
               >
-                {character.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                character.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-                  <img
-                    src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
-                    alt={character.name}
-                  />
-                ) : (
-                  <img
-                    src={
-                      character.thumbnail.path.replace("http:", "https:") +
-                      "/portrait_uncanny." +
-                      character.thumbnail.extension
-                    }
-                    alt={character.name}
-                  />
-                )}
+                <Fade>
+                  {character.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                  character.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                    <img
+                      src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
+                      alt={character.name}
+                    />
+                  ) : (
+                    <img
+                      src={
+                        character.thumbnail.path.replace("http:", "https:") +
+                        "/portrait_uncanny." +
+                        character.thumbnail.extension
+                      }
+                      alt={character.name}
+                    />
+                  )}
+                </Fade>
               </Link>
               {character.description && (
                 <ModalDescription

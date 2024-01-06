@@ -4,7 +4,7 @@
   justify-content: center;
 }
 .fav-title h1 {
-  color: red;
+  color: crimson;
 }
 .log-fav-div {
   display: flex;
@@ -41,7 +41,7 @@
   margin-bottom: 0.5rem;
 }
 .rm-fav:hover {
-  color: red;
+  color: crimson;
 }
 .no-fav {
   text-align: center;
