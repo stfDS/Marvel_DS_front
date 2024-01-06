@@ -53,139 +53,7 @@ const Favorites = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
-  return isAuthenticated ? (
-    loading ? (
-      <div className="loader-div">
-        <h1>
-          Loading <span className="loader"></span>
-        </h1>
-      </div>
-    ) : (
-      <main>
-        <section className="container">
-          <div className="fav-title">
-            <h1>Characters</h1>
-          </div>
-          {charactersData.length > 0 ? (
-            <div className="characters-fav">
-              {charactersData.map((character) => {
-                return (
-                  <article
-                    key={character._id}
-                    className="characters-character-sheet fav-character-sheet"
-                  >
-                    <div className="characters-character-name">
-                      <h3>{AddEllipsis(character.name, 10)}</h3>
-                    </div>
-                    <div>
-                      <RmCharacterFav character={character} />
-                    </div>
-
-                    <Link
-                      to={`/character/${character._id}`}
-                      className="characters-character-pic fav-character-pic"
-                    >
-                      {character.thumbnail.path ===
-                        "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                      character.thumbnail.path ===
-                        "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-                        <img
-                          src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
-                          alt={character.name}
-                        />
-                      ) : (
-                        <img
-                          src={
-                            character.thumbnail.path.replace(
-                              "http:",
-                              "https:"
-                            ) +
-                            "/portrait_uncanny." +
-                            character.thumbnail.extension
-                          }
-                          alt={character.name}
-                        />
-                      )}
-                    </Link>
-                    {character.description && (
-                      <div className="all-comics-description">
-                        <ModalDescription
-                          description={character.description}
-                          title={character.name}
-                        />
-                      </div>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="no-fav">
-              <h1>No favorite characters</h1>
-            </div>
-          )}
-        </section>
-
-        <section className="container">
-          <div className="fav-title">
-            <h1>Comics</h1>
-          </div>
-          {comicsData.length > 0 ? (
-            <div className="comics-fav">
-              {comicsData.map((comic) => {
-                return (
-                  <article
-                    key={comic._id}
-                    className="all-comics-sheet fav-comics-sheet"
-                  >
-                    <div className="all-comics-name fav-comics-name">
-                      <h3>{AddEllipsis(comic.title, 14)} </h3>
-                    </div>
-                    <div>
-                      <RmComicFav comic={comic} />
-                    </div>
-
-                    <div className="all-comics-pic">
-                      {comic.thumbnail.path ===
-                        "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                      comic.thumbnail.path ===
-                        "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
-                        <img
-                          src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
-                          alt={comic.name}
-                        />
-                      ) : (
-                        <img
-                          src={
-                            comic.thumbnail.path.replace("http:", "https:") +
-                            "/portrait_uncanny." +
-                            comic.thumbnail.extension
-                          }
-                          alt={comic.name}
-                        />
-                      )}
-                      {comic.description && (
-                        <div className="all-comics-description">
-                          <ModalDescription
-                            description={comic.description}
-                            title={comic.title}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="no-fav">
-              <h1>No favorite comics</h1>
-            </div>
-          )}
-        </section>
-      </main>
-    )
-  ) : (
+  return !isAuthenticated ? (
     <section className="log-fav">
       <div className="log-fav-div">
         <h1>Login</h1>
@@ -196,6 +64,136 @@ const Favorites = () => {
         <SignupForm />
       </div>
     </section>
+  ) : loading ? (
+    <div className="loader-div">
+      <h1>
+        Loading <span className="loader"></span>
+      </h1>
+    </div>
+  ) : (
+    <main className="main-container">
+      <section className="container">
+        <div className="fav-title">
+          <h1>Characters</h1>
+        </div>
+        {charactersData.length > 0 ? (
+          <div className="characters-fav">
+            {charactersData.map((character) => {
+              return (
+                <article
+                  key={character._id}
+                  className="characters-character-sheet fav-character-sheet"
+                >
+                  <Link
+                    to={`/character/${character._id}`}
+                    className="characters-character-name"
+                  >
+                    <h3>{AddEllipsis(character.name, 10)}</h3>
+                  </Link>
+                  <div>
+                    <RmCharacterFav character={character} />
+                  </div>
+
+                  <Link
+                    to={`/character/${character._id}`}
+                    className="characters-character-pic fav-character-pic"
+                  >
+                    {character.thumbnail.path ===
+                      "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                    character.thumbnail.path ===
+                      "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                      <img
+                        src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703702551/Marvel/DALL_E_2023-12-27_19.41.06_-_A_dynamic_full-body_portrait_of_a_superhero_inspired_by_Marvel_Comics_style._The_superhero_stands_in_a_powerful_pose_showcasing_strength_and_determi_yh6w9c.png"
+                        alt={character.name}
+                      />
+                    ) : (
+                      <img
+                        src={
+                          character.thumbnail.path.replace("http:", "https:") +
+                          "/portrait_uncanny." +
+                          character.thumbnail.extension
+                        }
+                        alt={character.name}
+                      />
+                    )}
+                  </Link>
+                  {character.description && (
+                    <div className="all-comics-description">
+                      <ModalDescription
+                        description={character.description}
+                        title={character.name}
+                      />
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="no-fav">
+            <h1>No favorite characters</h1>
+          </div>
+        )}
+      </section>
+
+      <section className="container">
+        <div className="fav-title">
+          <h1>Comics</h1>
+        </div>
+        {comicsData.length > 0 ? (
+          <div className="comics-fav">
+            {comicsData.map((comic) => {
+              return (
+                <article
+                  key={comic._id}
+                  className="all-comics-sheet fav-comics-sheet"
+                >
+                  <div className="all-comics-name fav-comics-name">
+                    <h3>{AddEllipsis(comic.title, 14)} </h3>
+                  </div>
+                  <div>
+                    <RmComicFav comic={comic} />
+                  </div>
+
+                  <div className="all-comics-pic">
+                    {comic.thumbnail.path ===
+                      "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                    comic.thumbnail.path ===
+                      "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708" ? (
+                      <img
+                        src="https://res.cloudinary.com/drhdqhrbn/image/upload/v1703513482/Marvel/DALL_E.comics_c3stwl.png"
+                        alt={comic.name}
+                      />
+                    ) : (
+                      <img
+                        src={
+                          comic.thumbnail.path.replace("http:", "https:") +
+                          "/portrait_uncanny." +
+                          comic.thumbnail.extension
+                        }
+                        alt={comic.name}
+                      />
+                    )}
+                    {comic.description && (
+                      <div className="all-comics-description">
+                        <ModalDescription
+                          description={comic.description}
+                          title={comic.title}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="no-fav">
+            <h1>No favorite comics</h1>
+          </div>
+        )}
+      </section>
+    </main>
   );
 };
 
