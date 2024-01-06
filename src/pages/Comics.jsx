@@ -86,7 +86,7 @@ const Comics = () => {
                       }
                       alt={comic.name}
                     />
-                  )}{" "}
+                  )}
                 </Fade>
                 {comic.description && (
                   <div className="all-comics-description">

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ModalDescription from "../components/ModalDescription";
 import AddEllipsis from "../../functions/addEllipsis";
 import AddCharacterFav from "../components/AddCharacterFav";
+import AddComicFav from "../components/AddComicFav";
 
 const CharacterComics = () => {
   const [loading, setLoading] = useState(true);
@@ -80,6 +81,7 @@ const CharacterComics = () => {
               <div className="solo-character-comic-title">
                 <h2> {AddEllipsis(comic.title, 12)} </h2>
               </div>
+              <AddComicFav comic={comic} />
               <div className="solo-character-comic-pic">
                 {comic.thumbnail.path ===
                   "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
